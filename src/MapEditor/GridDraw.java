@@ -71,6 +71,15 @@ public class GridDraw {
         return string.toString();
     }
 
+
+    public void disco() {
+        for (int widths = 0; widths < width; widths++) {
+            for (int heights = 0; heights < height; heights++) {
+                blocks[widths][heights].disco();
+            }
+        }
+    }
+
     //string to grid
     public void stringToGrid(String stringOfNumbers) {
 

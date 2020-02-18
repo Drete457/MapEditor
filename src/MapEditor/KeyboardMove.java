@@ -1,5 +1,6 @@
 package MapEditor;
 
+import org.academiadecodigo.simplegraphics.graphics.Color;
 import org.academiadecodigo.simplegraphics.keyboard.Keyboard;
 import org.academiadecodigo.simplegraphics.keyboard.KeyboardEvent;
 import org.academiadecodigo.simplegraphics.keyboard.KeyboardEventType;
@@ -52,10 +53,16 @@ public class KeyboardMove implements KeyboardHandler {
         keyboard.addEventListener(eventRight);
 
         //paint the block
-        KeyboardEvent eventSpace = new KeyboardEvent();
-        eventSpace.setKey(KeyboardEvent.KEY_V);
-        eventSpace.setKeyboardEventType(KeyboardEventType.KEY_PRESSED);
-        keyboard.addEventListener(eventSpace);
+        KeyboardEvent eventV = new KeyboardEvent();
+        eventV.setKey(KeyboardEvent.KEY_V);
+        eventV.setKeyboardEventType(KeyboardEventType.KEY_PRESSED);
+        keyboard.addEventListener(eventV);
+
+        //paint the block when pressed
+        KeyboardEvent eventV2 = new KeyboardEvent();
+        eventV2.setKey(KeyboardEvent.KEY_V);
+        eventV2.setKeyboardEventType(KeyboardEventType.KEY_RELEASED);
+        keyboard.addEventListener(eventV2);
 
         //save the file
         KeyboardEvent eventC = new KeyboardEvent();
@@ -80,6 +87,18 @@ public class KeyboardMove implements KeyboardHandler {
         eventR.setKey(KeyboardEvent.KEY_E);
         eventR.setKeyboardEventType(KeyboardEventType.KEY_PRESSED);
         keyboard.addEventListener(eventR);
+
+        //change the color of the draw
+        KeyboardEvent eventB = new KeyboardEvent();
+        eventB.setKey(KeyboardEvent.KEY_B);
+        eventB.setKeyboardEventType(KeyboardEventType.KEY_PRESSED);
+        keyboard.addEventListener(eventB);
+
+        //change the color of the blocks already painted
+        KeyboardEvent eventN = new KeyboardEvent();
+        eventN.setKey(KeyboardEvent.KEY_N);
+        eventN.setKeyboardEventType(KeyboardEventType.KEY_RELEASED);
+        keyboard.addEventListener(eventN);
     }
 
     //verify what key was pressed and call the correct methods
@@ -112,10 +131,12 @@ public class KeyboardMove implements KeyboardHandler {
 
             //paint the block
             case KeyboardEvent.KEY_V:
-                if (!engine.isPainting()){
+                if (!engine.isPainting()) {
                     engine.setPainting(true);
                     engine.paintBlock();
-                } else {engine.setPainting(false);}
+                } else {
+                    engine.setPainting(false);
+                }
                 break;
 
             //save the grid to the file
@@ -137,6 +158,11 @@ public class KeyboardMove implements KeyboardHandler {
             case KeyboardEvent.KEY_E:
                 System.exit(0);
                 break;
+
+            //Change the color of the draw
+            case KeyboardEvent.KEY_B:
+                draw.colorRandom();
+                break;
         }
     }
 
@@ -144,5 +170,23 @@ public class KeyboardMove implements KeyboardHandler {
     @Override
     public void keyReleased(KeyboardEvent keyboardEvent) {
 
+        int key = keyboardEvent.getKey();
+
+        switch (key) {
+            case KeyboardEvent.KEY_V:
+                if (!engine.isPainting()) {
+                    engine.setPainting(true);
+                    engine.paintBlock();
+                } else {
+                    engine.setPainting(false);
+                }
+                break;
+
+            //Change the color of the blocks that are painted
+            case KeyboardEvent.KEY_N:
+                grid.disco();
+                break;
+        }
     }
 }
+
