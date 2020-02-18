@@ -71,11 +71,19 @@ public class GridDraw {
         return string.toString();
     }
 
-
+    //change the color of all draw painted
     public void disco() {
         for (int widths = 0; widths < width; widths++) {
             for (int heights = 0; heights < height; heights++) {
                 blocks[widths][heights].disco();
+            }
+        }
+    }
+
+    public void crazy() {
+        for (int widths = 0; widths < width; widths++) {
+            for (int heights = 0; heights < height; heights++) {
+                blocks[widths][heights].crazyBlock();
             }
         }
     }

@@ -99,6 +99,12 @@ public class KeyboardMove implements KeyboardHandler {
         eventN.setKey(KeyboardEvent.KEY_N);
         eventN.setKeyboardEventType(KeyboardEventType.KEY_RELEASED);
         keyboard.addEventListener(eventN);
+
+        //change the color of all blocks
+        KeyboardEvent eventM = new KeyboardEvent();
+        eventM.setKey(KeyboardEvent.KEY_M);
+        eventM.setKeyboardEventType(KeyboardEventType.KEY_RELEASED);
+        keyboard.addEventListener(eventM);
     }
 
     //verify what key was pressed and call the correct methods
@@ -161,7 +167,7 @@ public class KeyboardMove implements KeyboardHandler {
 
             //Change the color of the draw
             case KeyboardEvent.KEY_B:
-                draw.colorRandom();
+                draw.changeColor();
                 break;
         }
     }
@@ -185,6 +191,11 @@ public class KeyboardMove implements KeyboardHandler {
             //Change the color of the blocks that are painted
             case KeyboardEvent.KEY_N:
                 grid.disco();
+                break;
+
+            //Change the color of the blocks that are painted
+            case KeyboardEvent.KEY_M:
+                grid.crazy();
                 break;
         }
     }

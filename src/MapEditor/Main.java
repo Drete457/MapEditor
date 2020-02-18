@@ -5,8 +5,8 @@ public class Main {
 
     public static void main(String[] args) {
 
-        int width = 80;
-        int height = 80;
+        int width = 93;
+        int height = 190;
         Engine engine = new Engine(width,height);
 
     }
