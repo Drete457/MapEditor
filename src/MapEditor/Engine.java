@@ -57,7 +57,7 @@ public class Engine {
         }
 
         //if paint call the method
-        if(painting == true) {
+        if(painting) {
             paintBlock();
         }
     }
